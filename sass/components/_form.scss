@@ -1,0 +1,133 @@
+.form {
+
+    &__group {
+
+        &:not(:last-child) {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    &__input {
+        font-size: $font-size-default;
+        font-family: inherit;
+        padding: 1.5rem 2rem;
+        border: none;
+        background-color: rgba($color-white, .8);
+        border-radius: .2rem;
+        display: block;
+        width: 100%;
+        transition: all .4s;
+        color: inherit;
+        border-bottom: .3rem solid transparent;
+
+        &:focus {
+            outline: none;
+            border-bottom: .3rem solid $color-primary;
+            box-shadow: 0 .2rem 1rem rgba($color-black, .1);
+        }
+
+        &:focus:invalid {
+            border-bottom: .3rem solid $color-secondary-dark;
+        }
+
+        &::-webkit-input-placeholder {
+            color: $color-grey-dark-2;
+        }
+    }
+
+    &__label {
+        font-size: 1.2rem;
+        margin: .3rem 0 0 2.1rem;
+        display: block;
+        font-weight: 700;
+        transition: all .3s ease;
+    }
+
+    &__input:placeholder-shown + &__label {
+        transform: translateY(-3.6rem);
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    //Radio
+    &__radio-group {
+        display: inline-block;
+        width: 49%;
+        position: relative;
+        height: 2rem;
+
+        @include respond(phone) {
+            width: 100%;
+            margin-bottom: 4rem;
+        }
+    }
+
+    &__radio {
+        opacity: 0;
+    }
+
+    &__radio-label {
+        font-size: $font-size-default;
+        position: absolute;
+        top: 1.5rem;
+        left: 4.5rem;
+        cursor: pointer;
+
+        @include respond(phone) {
+            left: 6rem;
+        }
+    }
+
+    &__radio-button {
+        display: inline-block;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        border: .5rem solid $color-primary-dark;
+        position: absolute;
+        top: 0;
+        left: -4.5rem;
+
+        @include respond(phone) {
+            width: 4rem;
+            height: 4rem;
+            top: -.5rem;
+            left: -6rem;
+            font-size: 1.5rem;
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 1.3rem;
+            height: 1.3rem;
+            border-radius: 50%;
+            background-color: $color-primary-dark;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity .3s;
+
+            @include respond(tab-land) {
+                width: 1.1rem;
+                height: 1rem;
+            }
+
+            @include respond(phone) {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+        }
+    }
+
+    &__radio:checked + &__radio-label &__radio-button::after {
+        opacity: 1;
+    }
+
+    &__radio:focus + &__radio-label &__radio-button {
+        animation: pressed .5s;
+    }
+    
+}
